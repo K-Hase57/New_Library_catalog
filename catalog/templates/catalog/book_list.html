@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Catalog</title>
+</head>
+<body>
+<h1>Library Book List</h1>
+<ul>
+{% for book in books %}
+
+<li>
+
+<strong>{{ book.title }}</strong><br>
+Author: {{ book.author.name }}&lt;br&gt;
+Publisher: {{ book.publisher.name }}<br>
+Pages: {{ book.pages }}<br>
+
+Categories:
+{% for category in book.categories.all %}
+    {{ category.name }}{% if not forloop.last %}, {% endif %}
+{% endfor %}
+
+<hr>
+
+</li>
+
+{% empty %}
+
+<p>No books available.</p>
+
+{% endfor %}
+
+</ul>
+
+</body>
+</html>
